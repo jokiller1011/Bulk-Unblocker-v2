@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClassLink Login</title>
+    <title>Educational Access Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Your existing CSS remains the same */
         :root {
             --primary: #310163;
             --secondary: #9d4edd;
@@ -124,7 +123,6 @@
             gap: 8px;
         }
         
-        /* Settings Panel */
         .settings-panel {
             position: fixed;
             top: 0;
@@ -228,7 +226,6 @@
             transform: translateX(26px);
         }
         
-        /* Content Area */
         #proxy-content {
             background: white;
             border-radius: 12px;
@@ -244,7 +241,6 @@
             border: none;
         }
         
-        /* Loading Animation */
         .loading {
             position: absolute;
             top: 0;
@@ -271,7 +267,6 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Features Section */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -307,7 +302,6 @@
             line-height: 1.5;
         }
         
-        /* Disclaimer */
         .disclaimer {
             padding: 15px;
             background: rgba(239, 35, 60, 0.1);
@@ -316,7 +310,6 @@
             border-radius: 8px;
         }
         
-        /* Account Settings */
         .account-settings {
             margin-top: 20px;
             padding: 15px;
@@ -329,7 +322,6 @@
             color: var(--accent);
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -348,6 +340,15 @@
                 height: 60vh;
             }
         }
+
+        .url-display {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            font-size: 0.9em;
+            color: var(--gray);
+        }
     </style>
 </head>
 <body>
@@ -355,7 +356,7 @@
         <header>
             <a href="#" class="logo" id="home-link">
                 <i class="fas fa-bolt logo-icon"></i>
-                <span class="logo-text">Bulk Unblocker</span>
+                <span class="logo-text">EduAccess</span>
             </a>
             <button class="settings-btn" id="settings-btn">
                 <i class="fas fa-cog"></i> Settings
@@ -364,45 +365,48 @@
         
         <div class="proxy-controls">
             <div class="input-group">
-                <input type="text" id="url" placeholder="Enter website URL" autocomplete="off">
+                <input type="text" id="url" placeholder="Enter website URL (e.g., wikipedia.org)" autocomplete="off">
                 <button id="submit">
                     <i class="fas fa-arrow-right"></i> Go
                 </button>
             </div>
         </div>
 
+        <div class="url-display" id="url-display">
+            Current: Ready to browse
+        </div>
+
         <div id="proxy-content">
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <div>Loading through Nitro Network...</div>
+                <div>Enter a URL above to begin browsing</div>
             </div>
-            <iframe id="content-frame" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+            <iframe id="content-frame" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
         </div>
 
         <div class="features">
             <div class="feature-card">
                 <i class="fas fa-shield-alt feature-icon"></i>
                 <h3>Secure Access</h3>
-                <p>Military-grade encryption protects your browsing activity from prying eyes.</p>
+                <p>Encrypted connection protects your browsing activity.</p>
             </div>
             <div class="feature-card">
                 <i class="fas fa-tachometer-alt feature-icon"></i>
-                <h3>Lightning Fast</h3>
-                <p>Optimized servers ensure blazing-fast connection speeds worldwide.</p>
+                <h3>Fast Connection</h3>
+                <p>Optimized for quick access to educational resources.</p>
             </div>
             <div class="feature-card">
                 <i class="fas fa-user-graduate feature-icon"></i>
-                <h3>By Students, For Students</h3>
-                <p>Created to help students access resources without restrictions.</p>
+                <h3>Educational Use</h3>
+                <p>Designed to help students access learning materials.</p>
             </div>
         </div>
         
         <div class="disclaimer">
-            <strong>Disclaimer:</strong> Have Fun!
+            <strong>Educational Use Only:</strong> This tool is for accessing educational resources.
         </div>
     </div>
 
-    <!-- Settings Panel -->
     <div class="settings-panel" id="settings-panel">
         <div class="settings-header">
             <h2 class="settings-title">Settings</h2>
@@ -412,36 +416,11 @@
         </div>
         
         <div class="settings-group">
-            <h3>Performance</h3>
-            <div class="setting-option">
-                <span class="setting-label">Enable Preloading</span>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="preload-toggle" checked>
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-            <div class="setting-option">
-                <span class="setting-label">Cache Resources</span>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="cache-toggle" checked>
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-        </div>
-        
-        <div class="settings-group">
             <h3>Privacy</h3>
             <div class="setting-option">
                 <span class="setting-label">Block Trackers</span>
                 <label class="toggle-switch">
                     <input type="checkbox" id="trackers-toggle" checked>
-                    <span class="toggle-slider"></span>
-                </label>
-            </div>
-            <div class="setting-option">
-                <span class="setting-label">Remove Cookies</span>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="cookies-toggle">
                     <span class="toggle-slider"></span>
                 </label>
             </div>
@@ -459,25 +438,11 @@
         </div>
         
         <div class="settings-group">
-            <h3>User</h3>
+            <h3>Data</h3>
             <div class="account-settings">
-                <h3>Local Storage</h3>
                 <div class="setting-option">
-                    <span class="setting-label">Clear Cache</span>
+                    <span class="setting-label">Clear Data</span>
                     <button id="clear-cache" style="padding: 5px 10px; background: var(--danger); color: white; border: none; border-radius: 4px;">Clear</button>
-                </div>
-                <div class="setting-option">
-                    <span class="setting-label">Reset Settings</span>
-                    <button id="reset-settings" style="padding: 5px 10px; background: var(--danger); color: white; border: none; border-radius: 4px;">Reset</button>
-                </div>
-                <div class="setting-option">
-                    <span class="setting-label">Export Settings</span>
-                    <button id="export-settings" style="padding: 5px 10px; background: var(--success); color: white; border: none; border-radius: 4px;">Export</button>
-                </div>
-                <div class="setting-option">
-                    <span class="setting-label">Import Settings</span>
-                    <input type="file" id="import-settings" accept=".json" style="display: none;">
-                    <button onclick="document.getElementById('import-settings').click()" style="padding: 5px 10px; background: var(--success); color: white; border: none; border-radius: 4px;">Import</button>
                 </div>
             </div>
         </div>
@@ -485,7 +450,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // DOM Elements
             const urlInput = document.getElementById('url');
             const submitBtn = document.getElementById('submit');
             const contentFrame = document.getElementById('content-frame');
@@ -494,55 +458,21 @@
             const settingsBtn = document.getElementById('settings-btn');
             const settingsPanel = document.getElementById('settings-panel');
             const closeSettings = document.getElementById('close-settings');
+            const urlDisplay = document.getElementById('url-display');
             
-            // Settings toggles
-            const preloadToggle = document.getElementById('preload-toggle');
-            const cacheToggle = document.getElementById('cache-toggle');
-            const trackersToggle = document.getElementById('trackers-toggle');
-            const cookiesToggle = document.getElementById('cookies-toggle');
-            const darkmodeToggle = document.getElementById('darkmode-toggle');
-            
-            // Account settings buttons
-            const clearCacheBtn = document.getElementById('clear-cache');
-            const resetSettingsBtn = document.getElementById('reset-settings');
-            const exportSettingsBtn = document.getElementById('export-settings');
-            const importSettingsInput = document.getElementById('import-settings');
-            
-            // Proxy configuration
+            // Working proxy servers that should work on GitHub Pages
             const proxyServers = [
+                'https://api.allorigins.win/get?url=',
                 'https://corsproxy.io/?',
-                'https://api.allorigins.win/raw?url=',
-                'https://proxy.cors.sh/?url=',
-                'https://cors-anywhere.herokuapp.com/'
+                'https://proxy.cors.sh/'
             ];
-            
+
             let currentProxyIndex = 0;
-            let currentUrl = '';
-            let resourceCache = new Map();
-            
-            // Initialize settings from localStorage
-            function loadSettings() {
-                const settings = JSON.parse(localStorage.getItem('nitroSettings')) || {};
-                preloadToggle.checked = settings.preload !== false;
-                cacheToggle.checked = settings.cache !== false;
-                trackersToggle.checked = settings.blockTrackers !== false;
-                cookiesToggle.checked = settings.removeCookies || false;
-                darkmodeToggle.checked = settings.darkMode !== false;
-            }
-            
-            // Save settings to localStorage
-            function saveSettings() {
-                const settings = {
-                    preload: preloadToggle.checked,
-                    cache: cacheToggle.checked,
-                    blockTrackers: trackersToggle.checked,
-                    removeCookies: cookiesToggle.checked,
-                    darkMode: darkmodeToggle.checked
-                };
-                localStorage.setItem('nitroSettings', JSON.stringify(settings));
-            }
-            
-            // Toggle settings panel
+
+            // Initialize
+            loadSettings();
+
+            // Settings functionality
             settingsBtn.addEventListener('click', function() {
                 settingsPanel.classList.add('active');
             });
@@ -550,168 +480,135 @@
             closeSettings.addEventListener('click', function() {
                 settingsPanel.classList.remove('active');
             });
-            
-            // Settings change handlers
-            [preloadToggle, cacheToggle, trackersToggle, cookiesToggle, darkmodeToggle].forEach(toggle => {
-                toggle.addEventListener('change', saveSettings);
+
+            document.getElementById('clear-cache').addEventListener('click', function() {
+                localStorage.clear();
+                alert('Data cleared successfully!');
             });
-            
-            // Account settings handlers
-            clearCacheBtn.addEventListener('click', function() {
-                localStorage.removeItem('nitroCache');
-                resourceCache.clear();
-                alert('Cache cleared successfully!');
-            });
-            
-            resetSettingsBtn.addEventListener('click', function() {
-                if (confirm('Are you sure you want to reset all settings?')) {
-                    localStorage.removeItem('nitroSettings');
-                    loadSettings();
-                    alert('Settings reset to defaults!');
-                }
-            });
-            
-            exportSettingsBtn.addEventListener('click', function() {
-                const settings = JSON.parse(localStorage.getItem('nitroSettings')) || {};
-                const dataStr = JSON.stringify(settings, null, 2);
-                const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-                
-                const exportName = 'nitro-network-settings.json';
-                
-                const linkElement = document.createElement('a');
-                linkElement.setAttribute('href', dataUri);
-                linkElement.setAttribute('download', exportName);
-                linkElement.click();
-            });
-            
-            importSettingsInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (!file) return;
-                
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const settings = JSON.parse(e.target.result);
-                        localStorage.setItem('nitroSettings', JSON.stringify(settings));
-                        loadSettings();
-                        alert('Settings imported successfully!');
-                    } catch (error) {
-                        alert('Error importing settings: Invalid file format');
-                    }
+
+            function loadSettings() {
+                const settings = JSON.parse(localStorage.getItem('eduSettings')) || {};
+                document.getElementById('trackers-toggle').checked = settings.blockTrackers !== false;
+                document.getElementById('darkmode-toggle').checked = settings.darkMode !== false;
+            }
+
+            function saveSettings() {
+                const settings = {
+                    blockTrackers: document.getElementById('trackers-toggle').checked,
+                    darkMode: document.getElementById('darkmode-toggle').checked
                 };
-                reader.readAsText(file);
-            });
-            
-            // Get current proxy URL
-            function getProxyUrl(url) {
-                return proxyServers[currentProxyIndex] + encodeURIComponent(url);
+                localStorage.setItem('eduSettings', JSON.stringify(settings));
             }
-            
-            // Rotate to next proxy server
-            function rotateProxy() {
-                currentProxyIndex = (currentProxyIndex + 1) % proxyServers.length;
-                console.log('Switched to proxy:', proxyServers[currentProxyIndex]);
-            }
-            
-            // Show error message
-            function showError(message) {
-                loading.innerHTML = `<div style="color: #ef233c; text-align: center; padding: 20px;">${message}</div>`;
-            }
-            
-            // Address bar manipulation
-            function updateAddressBar() {
-                // Create a new history state to change the URL
-                window.history.replaceState(null, null, 'about:blank');
-                
-                // Additional method: Use pushState for broader compatibility
-                try {
-                    const stateObj = { page: "proxy" };
-                    window.history.pushState(stateObj, "about:blank", "about:blank");
-                } catch(e) {
-                    console.log("History API not fully supported");
-                }
-            }
-            
-            // Load URL through proxy
+
+            document.getElementById('trackers-toggle').addEventListener('change', saveSettings);
+            document.getElementById('darkmode-toggle').addEventListener('change', saveSettings);
+
+            // Enhanced URL loading with better error handling
             async function loadUrl(url) {
                 if (!url) return;
                 
-                currentUrl = url;
-                urlInput.value = url;
+                // Update display
+                urlDisplay.textContent = `Loading: ${url}`;
                 loading.style.display = 'flex';
                 contentFrame.style.display = 'none';
-                
-                // Update address bar to about:blank
-                updateAddressBar();
-                
+                loading.innerHTML = '<div class="spinner"></div><div>Loading educational content...</div>';
+
                 let attempts = 0;
-                const maxAttempts = proxyServers.length * 4;
-                
+                const maxAttempts = proxyServers.length;
+
                 while (attempts < maxAttempts) {
                     try {
-                        const proxyUrl = getProxyUrl(url);
+                        const proxyUrl = proxyServers[currentProxyIndex] + encodeURIComponent(url);
+                        console.log('Trying proxy:', proxyServers[currentProxyIndex]);
+                        
                         const response = await fetch(proxyUrl, {
-                            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+                            method: 'GET',
+                            headers: {
+                                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                            },
+                            mode: 'cors'
                         });
                         
-                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                        
-                        let html = await response.text();
-                        
-                        // Create blob URL for iframe
-                        const blob = new Blob([html], { type: 'text/html' });
-                        contentFrame.src = URL.createObjectURL(blob);
-                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP ${response.status}`);
+                        }
+
+                        let data;
+                        if (proxyServers[currentProxyIndex].includes('allorigins.win')) {
+                            data = await response.json();
+                            const html = data.contents;
+                            
+                            // Create blob URL for iframe
+                            const blob = new Blob([html], { type: 'text/html' });
+                            const blobUrl = URL.createObjectURL(blob);
+                            contentFrame.src = blobUrl;
+                        } else {
+                            const html = await response.text();
+                            const blob = new Blob([html], { type: 'text/html' });
+                            const blobUrl = URL.createObjectURL(blob);
+                            contentFrame.src = blobUrl;
+                        }
+
                         contentFrame.onload = function() {
+                            loading.style.display = 'none';
+                            contentFrame.style.display = 'block';
+                            urlDisplay.textContent = `Currently viewing: ${url}`;
+                            
                             try {
-                                // Fix relative URLs in the iframe
+                                // Try to fix links in the iframe
                                 const frameDoc = contentFrame.contentDocument || contentFrame.contentWindow.document;
                                 const base = frameDoc.createElement('base');
                                 base.href = url;
                                 frameDoc.head.appendChild(base);
                                 
-                                // Rewrite links to stay within proxy
-                                frameDoc.querySelectorAll('a').forEach(a => {
-                                    if (a.href) {
-                                        a.addEventListener('click', function(e) {
-                                            e.preventDefault();
-                                            const absoluteUrl = new URL(a.href, url).href;
-                                            loadUrl(absoluteUrl);
-                                        });
+                                // Intercept clicks on links
+                                frameDoc.addEventListener('click', function(e) {
+                                    if (e.target.tagName === 'A' && e.target.href) {
+                                        e.preventDefault();
+                                        const absoluteUrl = new URL(e.target.href, url).href;
+                                        loadUrl(absoluteUrl);
                                     }
                                 });
-                                
-                                // Handle form submissions
-                                frameDoc.querySelectorAll('form').forEach(form => {
-                                    form.addEventListener('submit', function(e) {
-                                        e.preventDefault();
-                                        const formAction = form.getAttribute('action') || url;
-                                        const absoluteUrl = new URL(formAction, url).href;
-                                        const formData = new FormData(form);
-                                        const params = new URLSearchParams(formData);
-                                        loadUrl(`${absoluteUrl}?${params.toString()}`);
-                                    });
-                                });
                             } catch (e) {
-                                console.error('Error processing iframe content:', e);
+                                console.log('Cannot modify iframe content due to CORS');
                             }
-                            
-                            loading.style.display = 'none';
-                            contentFrame.style.display = 'block';
                         };
-                        
+
+                        contentFrame.onerror = function() {
+                            rotateProxy();
+                            attempts++;
+                        };
+
                         return; // Success
+
                     } catch (error) {
-                        console.error(`Attempt ${attempts + 1} failed:`, error);
+                        console.error(`Proxy ${currentProxyIndex} failed:`, error);
                         attempts++;
                         rotateProxy();
-                        await new Promise(resolve => setTimeout(resolve, 300));
+                        await new Promise(resolve => setTimeout(resolve, 1000));
                     }
                 }
-                
-                showError('Failed to load page. Please try another URL.');
+
+                // All proxies failed
+                loading.innerHTML = `
+                    <div style="text-align: center; padding: 20px; color: #ef233c;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                        <div>Unable to load this website. Try:</div>
+                        <div style="margin-top: 10px; font-size: 0.9em;">
+                            • A different website<br>
+                            • Checking your internet connection<br>
+                            • Trying again later
+                        </div>
+                    </div>
+                `;
+                urlDisplay.textContent = 'Error loading website';
             }
-            
+
+            function rotateProxy() {
+                currentProxyIndex = (currentProxyIndex + 1) % proxyServers.length;
+                console.log('Rotated to proxy:', proxyServers[currentProxyIndex]);
+            }
+
             // Event listeners
             submitBtn.addEventListener('click', function() {
                 let url = urlInput.value.trim();
@@ -723,35 +620,31 @@
                 
                 loadUrl(url);
             });
-            
+
             urlInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') submitBtn.click();
+                if (e.key === 'Enter') {
+                    submitBtn.click();
+                }
             });
-            
+
             homeLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 contentFrame.src = 'about:blank';
                 urlInput.value = '';
                 loading.style.display = 'flex';
                 contentFrame.style.display = 'none';
-                loading.innerHTML = '<div class="spinner"></div><div>Enter a URL to begin</div>';
-                updateAddressBar();
+                loading.innerHTML = '<div class="spinner"></div><div>Enter a URL above to begin browsing</div>';
+                urlDisplay.textContent = 'Current: Ready to browse';
             });
-            
-            // Prevent navigation away from the page
-            window.addEventListener('beforeunload', function(e) {
-                // This helps maintain the about:blank appearance
-            });
-            
-            // Initialize
-            loadSettings();
-            
-            // Set initial address bar state
-            updateAddressBar();
-            
-            // Load default page
-            urlInput.value = 'https://discord.com';
-            loadUrl(urlInput.value);
+
+            // Address bar simulation
+            function simulateAddressBar() {
+                // This creates a visual effect but doesn't actually change the address bar
+                // due to browser security restrictions on GitHub Pages
+                document.title = "Educational Portal";
+            }
+
+            simulateAddressBar();
         });
     </script>
 </body>
